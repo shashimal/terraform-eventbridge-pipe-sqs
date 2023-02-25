@@ -10,8 +10,8 @@ data "aws_iam_policy_document" "pipe_assume_policy_document" {
 
 data "aws_iam_policy_document" "pipe_iam_policy_document" {
   statement {
-    sid     = "AllowPipeToAccessSQS"
-    effect  = "Allow"
+    sid    = "AllowPipeToAccessSQS"
+    effect = "Allow"
     actions = [
       "sqs:ReceiveMessage",
       "sqs:DeleteMessage",
@@ -21,7 +21,7 @@ data "aws_iam_policy_document" "pipe_iam_policy_document" {
   }
 
   statement {
-    sid     = "InvokeEnrichmentLambdaFunction"
+    sid = "InvokeEnrichmentLambdaFunction"
     actions = [
       "lambda:InvokeFunction"
     ]

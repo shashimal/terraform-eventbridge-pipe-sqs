@@ -9,16 +9,16 @@ resource "aws_iam_role_policy" "pipe_iam_role_permission_policy" {
 }
 
 resource "aws_iam_role" "enrich_customer_request_lambda_iam_role" {
-  name                = "enrich-customer-request-lambda-role"
-  assume_role_policy  = data.aws_iam_policy_document.lambda_assume_policy_document.json
+  name               = "enrich-customer-request-lambda-role"
+  assume_role_policy = data.aws_iam_policy_document.lambda_assume_policy_document.json
   managed_policy_arns = [
     "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
   ]
 }
 
 resource "aws_iam_role" "process_customer_request_lambda_iam_role" {
-  name                = "process-customer-request-lambda-role"
-  assume_role_policy  = data.aws_iam_policy_document.lambda_assume_policy_document.json
+  name               = "process-customer-request-lambda-role"
+  assume_role_policy = data.aws_iam_policy_document.lambda_assume_policy_document.json
   managed_policy_arns = [
     "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
   ]

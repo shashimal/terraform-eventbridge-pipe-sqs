@@ -2,7 +2,18 @@ resource "awscc_pipes_pipe" "pipe" {
   name     = "pipe-customer-request"
   role_arn = aws_iam_role.pipe_iam_role.arn
 
-  source     = aws_sqs_queue.sqs.arn
+  source = aws_sqs_queue.sqs.arn
+  source_parameters = {
+    sqs = {
+      sqs_queue_parameters = {
+        batch_size = 1
+      }
+    }
+    filter_criteria = {
+      filters = [{ pattern = "{ \"customer_type\": [\"Platinum\"] }" }]
+    }
+  }
+
   enrichment = module.enrich_customer_request_lambda.lambda_function_arn
   target     = module.process_customer_request_lambda.lambda_function_arn
 }
