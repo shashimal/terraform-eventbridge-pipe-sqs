@@ -3,19 +3,25 @@ resource "awscc_pipes_pipe" "pipe" {
   role_arn = aws_iam_role.pipe_iam_role.arn
 
   source = aws_sqs_queue.sqs.arn
+
   source_parameters = {
     sqs = {
       sqs_queue_parameters = {
-        batch_size = 1
+        batch_size = 10
       }
     }
+
     filter_criteria = {
-      filters = [{ pattern = "{ \"customer_type\": [\"Platinum\"] }" }]
+      filters = [{ pattern = "{ \"body\": { \"customer_type\": [\"Platinum\"] }}" }]
     }
   }
 
   enrichment = module.enrich_customer_request_lambda.lambda_function_arn
-  target     = module.process_customer_request_lambda.lambda_function_arn
+  enrichment_parameters = {
+    input_template = "{\"request_id\": \"<$.body.id>\",  \"customer_type\": \"<$.body.customer_type>\", \"created_date\" : \"<$.body.createdDate>\"}"
+  }
+
+  target = module.process_customer_request_lambda.lambda_function_arn
 }
 
 resource "aws_sqs_queue" "sqs" {
