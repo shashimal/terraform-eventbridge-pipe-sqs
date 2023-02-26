@@ -2,7 +2,7 @@ resource "awscc_pipes_pipe" "pipe" {
   name     = "pipe-customer-request"
   role_arn = aws_iam_role.pipe_iam_role.arn
 
-  source = aws_sqs_queue.sqs.arn
+  source = aws_sqs_queue.customer_request_sqs.arn
 
   source_parameters = {
     sqs = {
@@ -18,13 +18,13 @@ resource "awscc_pipes_pipe" "pipe" {
 
   enrichment = module.enrich_customer_request_lambda.lambda_function_arn
   enrichment_parameters = {
-    input_template = "{\"request_id\": \"<$.body.id>\",  \"customer_type\": \"<$.body.customer_type>\", \"created_date\" : \"<$.body.createdDate>\"}"
+    input_template = "{\"id\": \"<$.body.id>\",  \"customer_type\": \"<$.body.customer_type>\", \"query\": \"<$.body.query>\",\"severity\": \"<$.body.severity>\", \"created_date\" : \"<$.body.createdDate>\"}"
   }
 
   target = module.process_customer_request_lambda.lambda_function_arn
 }
 
-resource "aws_sqs_queue" "sqs" {
+resource "aws_sqs_queue" "customer_request_sqs" {
   name = "customer-request"
 }
 

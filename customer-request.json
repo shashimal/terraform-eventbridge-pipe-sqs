@@ -1,0 +1,22 @@
+[
+  {
+    "Id":"1",
+    "MessageBody":"{ \"id\": \"001\",\"customer_type\": \"Gold\", \"query\": \"Need technical support\",\"severity\": \"High\",\"createdDate\": \"2023-02-25\"}"
+  },
+  {
+    "Id":"2",
+    "MessageBody":"{ \"id\": \"002\",\"customer_type\": \"Silver\", \"query\": \"Need technical support\",\"severity\": \"Low\",\"createdDate\": \"2023-02-25\"}"
+  },
+  {
+    "Id":"3",
+    "MessageBody":"{ \"id\": \"003\",\"customer_type\": \"Platinum\", \"query\": \"Need technical support\",\"severity\": \"High\",\"createdDate\": \"2023-02-25\"}"
+  },
+  {
+    "Id":"4",
+    "MessageBody":"{ \"id\": \"004\",\"customer_type\": \"Platinum\", \"query\": \"Need technical support\",\"severity\": \"Critical\",\"createdDate\": \"2023-02-25\"}"
+  },
+  {
+    "Id":"5",
+    "MessageBody":"{ \"id\": \"005\",\"customer_type\": \"Silver\", \"query\": \"Need technical support\",\"severity\": \"Low\",\"createdDate\": \"2023-02-25\"}"
+  }
+]

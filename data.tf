@@ -17,7 +17,7 @@ data "aws_iam_policy_document" "pipe_iam_policy_document" {
       "sqs:DeleteMessage",
       "sqs:GetQueueAttributes"
     ]
-    resources = [aws_sqs_queue.sqs.arn]
+    resources = [aws_sqs_queue.customer_request_sqs.arn]
   }
 
   statement {
